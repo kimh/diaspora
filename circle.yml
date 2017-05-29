@@ -1,3 +1,12 @@
 machine:
   ruby:
-    version: 2.3.0
+    version: 2.3.4
+
+dependencies:
+  override:
+    - RAILS_ENV=production bin/bundle install --no-deployment --without test development --with postgresql --path vendor/bundle
+
+database:
+  override:
+    - RAILS_ENV=production bin/rake db:create db:migrate
+
