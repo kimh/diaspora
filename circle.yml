@@ -6,9 +6,9 @@ dependencies:
   override:
     - RAILS_ENV=production bin/bundle install --jobs $(nproc) --no-deployment --without test development --with postgresql --path vendor/bundle
 
-database:
-  override:
-    - RAILS_ENV=production bin/rake db:create db:migrate
+#database:
+#  override:
+#    - RAILS_ENV=production bin/rake db:create db:migrate
 
 #version: 2
 #jobs:
