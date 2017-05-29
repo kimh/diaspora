@@ -6,6 +6,8 @@ jobs:
       - image: mysql:5.6
         environment:
           - MYSQL_ROOT_PASSWORD: ""
+          - MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          - MYSQL_RANDOM_ROOT_PASSWORD: no
 
     working_directory: /tmp/code
     steps:
