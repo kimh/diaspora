@@ -4,6 +4,7 @@ machine:
 
 dependencies:
   override:
+    - gem install bundler
     - RAILS_ENV=production bin/bundle install --no-deployment --without test development --with postgresql --path vendor/bundle
 
 database:
