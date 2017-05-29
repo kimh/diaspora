@@ -1,30 +1,42 @@
-version: 2
-jobs:
-  build:
-    docker:
-      - image: circleci/ruby:2.3
-      - image: postgres:9.5.7
-        environment:
-          - POSTGRES_PASSWORD: ""
+machine:
+  ruby:
+    version: 2.3
 
-    working_directory: /tmp/code
-    steps:
-      - checkout
+dependencies:
+  override:
+    - RAILS_ENV=production bin/bundle install --jobs $(nproc) --no-deployment --without test development --with postgresql --path vendor/bundle
 
-      # Restore bundle cache
-      - type: cache-restore
-        key: diaspora-{{ checksum "Gemfile.lock" }}
+database:
+  override:
+    - RAILS_ENV=production bin/rake db:create db:migrate
 
-      # Bundle install dependencies
-      - run: RAILS_ENV=production bin/bundle install --jobs $(nproc) --no-deployment --without test development --with postgresql --path vendor/bundle
-
-      # Store bundle cache
-      - type: cache-save
-        key: diaspora-{{ checksum "Gemfile.lock" }}
-        paths:
-          - vendor/bundle
-
-      - run: RAILS_ENV=production bin/rake db:create db:migrate
+#version: 2
+#jobs:
+#  build:
+#    docker:
+#      - image: circleci/ruby:2.3
+#      - image: postgres:9.5.7
+#        environment:
+#          - POSTGRES_PASSWORD: ""
+#
+#    working_directory: /tmp/code
+#    steps:
+#      - checkout
+#
+#      # Restore bundle cache
+#      - type: cache-restore
+#        key: diaspora-{{ checksum "Gemfile.lock" }}
+#
+#      # Bundle install dependencies
+#      - run: RAILS_ENV=production bin/bundle install --jobs $(nproc) --no-deployment --without test development --with postgresql --path vendor/bundle
+#
+#      # Store bundle cache
+#      - type: cache-save
+#        key: diaspora-{{ checksum "Gemfile.lock" }}
+#        paths:
+#          - vendor/bundle
+#
+#      - run: RAILS_ENV=production bin/rake db:create db:migrate
 
 
 
