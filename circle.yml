@@ -12,7 +12,20 @@ jobs:
     working_directory: /tmp/code
     steps:
       - checkout
-      - run: RAILS_ENV=production bin/bundle install --jobs $(nproc) --deployment --without test development --with postgresql
+
+      # Restore bundle cache
+      - type: cache-restore
+        key: diaspora-{{ checksum "Gemfile.lock" }}
+
+      # Bundle install dependencies
+      - run: RAILS_ENV=production bin/bundle install --jobs $(nproc) --deployment --without test development --with postgresql --path vendor/bundle
+
+      # Store bundle cache
+      - type: cache-save
+        key: diaspora-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
+
       - run: RAILS_ENV=production bin/rake db:create db:migrate
 
 
