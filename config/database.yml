@@ -21,8 +21,8 @@ mysql: &mysql
 # if you want to use mysql
 common: &common
   # Choose one of the following
-  <<: *postgresql
-  #<<: *mysql
+  #<<: *postgresql
+  <<: *mysql
 
   # Should match environment.sidekiq.concurrency
   #pool: 25
