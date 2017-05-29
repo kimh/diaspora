@@ -9,7 +9,7 @@ app/views/terms/terms.*
 app/assets/images/custom/
 
 # Configuration files
-config/diaspora.yml
+#config/diaspora.yml
 config/heroku.yml
 config/initializers/secret_token.rb
 config/redis.conf
@@ -18,7 +18,7 @@ config/schedule.rb
 .bundle
 vendor/bundle/
 vendor/cache/
-config/database.yml
+#config/database.yml
 .rvmrc_custom
 .rvmrc.local
 config/oidc_key.pem
