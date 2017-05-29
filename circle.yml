@@ -11,7 +11,9 @@ jobs:
 
     working_directory: /tmp/code
     steps:
-      - run: echo hello
+      - checkout
+      - run: RAILS_ENV=production bin/bundle install --jobs $(nproc) --deployment --without test development --with postgresql
+      - run: RAILS_ENV=production bin/rake db:create db:migrate
 
 
 
