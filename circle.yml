@@ -3,11 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.3
-      - image: mysql:5.7
-        environment:
-          - MYSQL_ROOT_PASSWORD: ""
-          - MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-          - MYSQL_RANDOM_ROOT_PASSWORD: "no"
+      - image: circleci/mysql:5.7
 
     working_directory: /tmp/code
     steps:
