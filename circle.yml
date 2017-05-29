@@ -11,3 +11,7 @@ database:
   override:
     - RAILS_ENV=production bin/rake db:create db:migrate
 
+test:
+  override:
+    - exit 0
+
