@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.3
-      - image: notnoopci/mysql:5.7
+      - image: circleci/mysql:5.7
     working_directory: /tmp/code
     steps:
       - checkout
