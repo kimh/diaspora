@@ -1,17 +1,18 @@
 machine:
   ruby:
     version: 2.3.4
+  environment:
+    RAILS_ENV: test
 
 dependencies:
   override:
     - gem install bundler
-    - RAILS_ENV=production bin/bundle install --no-deployment --without test development --with postgresql --path vendor/bundle
+    - bin/bundle install --jobs $(nproc) --no-deployment --without production development --with postgresql --path vendor/bundle
 
 database:
   override:
-    - RAILS_ENV=production bin/rake db:create db:migrate
+    - bin/rake db:create db:migrate
 
 test:
   override:
-    - exit 0
-
+    - BUILD_TYPE=other ./script/ci/build.sh
