@@ -30,9 +30,13 @@ jobs:
         paths:
           - vendor/bundle
 
-      - run: bash -c "time -p bin/rake db:create db:migrate" 2>&1 | grep real | awk '{printf "%f", $2}' > /tmp/benchmark/db_migrate
+      - run: bash -c "time -p bin/rake db:create db:migrate" > /tmp/db_migrate.output 2>&1
+      - run: cat /tmp/db_migrate.output
+      - run: tail -3 /tmp/db_migrate.output | grep real | awk '{printf "%f", $2}' > /tmp/benchmark/db_migrate
 
-      - run: bash -c "time -p BUILD_TYPE=other ./script/ci/build.sh" 2>&1 | grep real | awk '{printf "%f", $2}' > /tmp/benchmark/rspec
+      - run: bash -c "time -p BUILD_TYPE=other ./script/ci/build.sh" > /tmp/rspec.output 2>&1
+      - run: cat /tmp/rspec.output
+      - run: tail -3 /tmp/rspec.output | grep real | awk '{printf "%f", $2}' > /tmp/benchmark/rspec
 
       - run: cat /tmp/benchmark/*
 
