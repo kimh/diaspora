@@ -6,6 +6,7 @@ jobs:
         environment:
           - PLATFORM: "2.0"
           - RAILS_ENV: "test"
+          - S3_BUCKET: "s3://ci-bench2"
 
       - image: notnoopci/postgres@sha256:cda8c36f8187fc3a1685f2aef245cec601720f318d58cc8e2ed25ed1ef6b58f7
         environment:
@@ -16,6 +17,8 @@ jobs:
       - checkout
 
       - run: mkdir /tmp/benchmark
+
+      - run: sudo apt-get -y install awscli
 
       # Restore bundle cache
       - type: cache-restore
