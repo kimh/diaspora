@@ -3,6 +3,9 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.3
+        environment:
+          - RAILS_ENV: "test"
+ 
       - image: notnoopci/postgres@sha256:cda8c36f8187fc3a1685f2aef245cec601720f318d58cc8e2ed25ed1ef6b58f7
         environment:
           - POSTGRES_PASSWORD: ""
@@ -16,7 +19,7 @@ jobs:
         key: diaspora-{{ checksum "Gemfile.lock" }}
 
       # Bundle install dependencies
-      - run: RAILS_ENV=production bin/bundle install --jobs $(nproc) --no-deployment --without test development --with postgresql --path vendor/bundle
+      - run: bin/bundle install --jobs $(nproc) --no-deployment --without production development --with postgresql --path vendor/bundle
 
       # Store bundle cache
       - type: cache-save
@@ -24,7 +27,7 @@ jobs:
         paths:
           - vendor/bundle
 
-      - run: RAILS_ENV=production bin/rake db:create db:migrate
+      #- run: RAILS_ENV=production bin/rake db:create db:migrate
 
 
 
