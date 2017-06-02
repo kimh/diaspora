@@ -27,5 +27,5 @@ jobs:
         paths:
           - vendor/bundle
 
-      #- run: RAILS_ENV=production bin/rake db:create db:migrate
+      - run: bin/rake db:create db:migrate
       - run: BUILD_TYPE=other ./script/ci/build.sh
