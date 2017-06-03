@@ -30,4 +30,4 @@ database:
 
 test:
   override:
-    - BUILD_TYPE=other ./script/ci/build.sh
+    - exit 0
