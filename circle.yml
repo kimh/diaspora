@@ -25,7 +25,7 @@ jobs:
         key: diaspora-{{ checksum "Gemfile.lock" }}
 
       # Bundle install dependencies
-      - run: bin/bundle install --jobs $(nproc) --no-deployment --without production development --with postgresql --path vendor/bundle
+      - run: bin/bundle install --jobs $(nproc) --no-deployment --without production development --with mysql --path vendor/bundle
 
       # Store bundle cache
       - type: cache-save
