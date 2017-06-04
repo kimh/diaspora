@@ -41,8 +41,6 @@ jobs:
       - run: cat /tmp/rspec.output
       - run: tail -3 /tmp/rspec.output | grep real | awk '{printf "%f", $2}' > /tmp/benchmark/rspec
       - run: cat /tmp/benchmark/*
-      - run: ./generate-result.sh > /tmp/benchmark/result_$CIRCLE_BUILD_NUM.json
-      - run: aws s3 cp /tmp/benchmark/result_$CIRCLE_BUILD_NUM.json $S3_BUCKET/circleci/$PLATFORM/diaspora/
 
       # Run ci-bench
       - run: curl -s https://packagecloud.io/install/repositories/akopytov/sysbench/script.deb.sh | sudo bash
