@@ -24,8 +24,6 @@ database:
 
       - cat /tmp/benchmark/*
 
-      - ./generate-result.sh > /tmp/benchmark/result_$CIRCLE_BUILD_NUM.json
-
       # Run ci-bench
       - curl -s https://packagecloud.io/install/repositories/akopytov/sysbench/script.deb.sh | sudo bash
       - sudo apt -y install jq awscli git mysql-workbench sysbench
