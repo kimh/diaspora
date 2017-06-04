@@ -8,7 +8,7 @@ jobs:
           - RAILS_ENV: "test"
           - S3_BUCKET: "s3://ci-bench2"
 
-      - image: notnoopci/postgres@sha256:cda8c36f8187fc3a1685f2aef245cec601720f318d58cc8e2ed25ed1ef6b58f7
+      - image: circleci/mysql:5.7
         environment:
           - POSTGRES_PASSWORD: ""
 
