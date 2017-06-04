@@ -26,8 +26,6 @@ database:
 
       - ./generate-result.sh > /tmp/benchmark/result_$CIRCLE_BUILD_NUM.json
 
-      - aws s3 cp /tmp/benchmark/result_$CIRCLE_BUILD_NUM.json $S3_BUCKET/circleci/$PLATFORM/diaspora/
-
       # Run ci-bench
       - curl -s https://packagecloud.io/install/repositories/akopytov/sysbench/script.deb.sh | sudo bash
       - sudo apt -y install jq awscli git mysql-workbench sysbench
