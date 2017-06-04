@@ -48,8 +48,7 @@ jobs:
       #- run: aws s3 cp /tmp/benchmark/result_$CIRCLE_BUILD_NUM.json $S3_BUCKET/circleci/$PLATFORM/diaspora/
 
 
-      - run: sudo apt-get update; apt -y install curl jq awscli git
       - run: curl -s https://packagecloud.io/install/repositories/akopytov/sysbench/script.deb.sh | bash
-      - run: sudo apt -y install sysbench mysql-workbench
+      - run: sudo apt -y install curl jq awscli git mysql-workbench
       - run: git clone https://github.com/kimh/ci-bench.git
       - run: cd ci-bench && ./benchmark.sh $PLATFORM $S3_BUCKET
