@@ -14,21 +14,22 @@ dependencies:
 database:
   override:
       - mkdir /tmp/benchmark
-      - bash -c "time -p bin/rake db:create db:migrate" > /tmp/db_migrate.output 2>&1
-      - cat /tmp/db_migrate.output
-      - tail -3 /tmp/db_migrate.output | grep real | awk '{printf "%f", $2}' > /tmp/benchmark/db_migrate
+      - bin/rake db:create db:migrate"
+      #- bash -c "time -p bin/rake db:create db:migrate" > /tmp/db_migrate.output 2>&1
+      #- cat /tmp/db_migrate.output
+      #- tail -3 /tmp/db_migrate.output | grep real | awk '{printf "%f", $2}' > /tmp/benchmark/db_migrate
 
-      - bash -c "time -p BUILD_TYPE=other ./script/ci/build.sh" > /tmp/rspec.output 2>&1
-      - cat /tmp/rspec.output
-      - tail -3 /tmp/rspec.output | grep real | awk '{printf "%f", $2}' > /tmp/benchmark/rspec
+      #- bash -c "time -p BUILD_TYPE=other ./script/ci/build.sh" > /tmp/rspec.output 2>&1
+      #- cat /tmp/rspec.output
+      #- tail -3 /tmp/rspec.output | grep real | awk '{printf "%f", $2}' > /tmp/benchmark/rspec
 
-      - cat /tmp/benchmark/*
+      #- cat /tmp/benchmark/*
 
-      # Run ci-bench
-      - curl -s https://packagecloud.io/install/repositories/akopytov/sysbench/script.deb.sh | sudo bash
-      - sudo apt -y install jq awscli git mysql-workbench sysbench
-      - git clone https://github.com/kimh/ci-bench.git
-      - cd ci-bench && ./benchmark.sh $PLATFORM $S3_BUCKET
+      ## Run ci-bench
+      #- curl -s https://packagecloud.io/install/repositories/akopytov/sysbench/script.deb.sh | sudo bash
+      #- sudo apt -y install jq awscli git mysql-workbench sysbench
+      #- git clone https://github.com/kimh/ci-bench.git
+      #- cd ci-bench && ./benchmark.sh $PLATFORM $S3_BUCKET
 
 test:
   override:
