@@ -14,7 +14,7 @@ dependencies:
 database:
   override:
       - mkdir /tmp/benchmark
-      - bin/rake db:create db:migrate"
+      - bin/rake db:create db:migrate
       #- bash -c "time -p bin/rake db:create db:migrate" > /tmp/db_migrate.output 2>&1
       #- cat /tmp/db_migrate.output
       #- tail -3 /tmp/db_migrate.output | grep real | awk '{printf "%f", $2}' > /tmp/benchmark/db_migrate
