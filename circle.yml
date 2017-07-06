@@ -47,4 +47,4 @@ jobs:
       - run: curl -s https://packagecloud.io/install/repositories/akopytov/sysbench/script.deb.sh | sudo bash
       - run: sudo apt -y install jq awscli git mysql-workbench sysbench
       - run: git clone https://github.com/kimh/ci-bench.git
-      - run: cd ci-bench && ./benchmark.sh $PLATFORM $S3_BUCKET
+      - run: cd ci-bench && ./benchmark.sh $CIRCLE_BRANCH $S3_BUCKET
