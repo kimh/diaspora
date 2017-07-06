@@ -1,6 +1,7 @@
 version: 2
 jobs:
   build:
+    resource_class: small
     docker:
       - image: circleci/ruby:2.3
         environment:
